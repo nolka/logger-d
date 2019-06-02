@@ -1,0 +1,11 @@
+{
+	"authors": [
+		"nolka"
+	],
+	"copyright": "Copyright © 2019, nolka",
+	"dependencies": {
+	},
+	"description": "D Logger.",
+	"license": "proprietary",
+	"name": "testapp"
+}
