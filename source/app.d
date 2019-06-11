@@ -12,6 +12,7 @@ import formatters;
 void main()
 {
     auto logger = new Logger();
+    logger.setBuffer(new LogBuffer(logger));
     logger.addHandler(new StdoutHandler(new StandardFormatter()));
     logger.addHandler(new TextFileHandler("/tmp/kek.txt", new StandardFormatter()));
 
@@ -19,6 +20,4 @@ void main()
     {
         logger.log("Hello");
     }
-    // logger.flush();
-
 }
