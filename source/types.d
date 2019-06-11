@@ -1,5 +1,7 @@
 module types;
 
+import std.stdio;
+
 enum Severity
 {
     INFO,
@@ -8,6 +10,12 @@ enum Severity
     ERROR,
     FATAL,
 };
+
+enum Verbosity
+{
+    VERBOSE = 1,
+    DEBUG = 2,
+}
 
 struct LogEntry
 {

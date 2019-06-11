@@ -10,22 +10,22 @@ import types;
 
 interface ILogFormatter
 {
-    string formatLine(in LogEntry entry);
+    string formatLine(in LogEntry* entry);
 }
 
-alias formatterFunc = string delegate(in LogEntry entry);
+alias formatterFunc = string delegate(in LogEntry *entry);
 
-string fmtTimestamp(in LogEntry entry)
+string fmtTimestamp(in LogEntry *entry)
 {
     return Clock.currTime().toUnixTime().to!string;
 }
 
-string fmtGetSeverity(in LogEntry entry)
+string fmtGetSeverity(in LogEntry *entry)
 {
     return entry.severity.to!string;
 }
 
-string fmtGetMessage(in LogEntry entry)
+string fmtGetMessage(in LogEntry *entry)
 {
     return entry.message;
 }
@@ -52,7 +52,7 @@ class StandardFormatter : ILogFormatter
         fmtMap[marker] = func;
     }
 
-    string formatLine(in LogEntry entry)
+    string formatLine(in LogEntry* entry)
     {
         auto line = formatMask.dup;
 
