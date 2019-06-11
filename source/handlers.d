@@ -9,7 +9,7 @@ import formatters;
 
 interface ILogHandler
 {
-    void handle(in LogEntry message);
+    void handle(in LogEntry* message);
 }
 
 abstract class BaseHandler
@@ -49,8 +49,12 @@ class StdoutHandler : BaseHandler, ILogHandler
         super(formatter);
     }
 
-    void handle(in LogEntry entry)
+    void handle(in LogEntry* entry)
     {
+        if(entry.severity == Severity.ERROR || entry.severity ==  Severity.FATAL || entry.severity ==  Severity.WARNING){
+            stderr.writeln(formatter.formatLine(entry));
+            return;
+        }
         writeln(formatter.formatLine(entry));
     }
 
@@ -84,7 +88,7 @@ class TextFileHandler : BaseHandler, ILogHandler
         }
     }
 
-    void handle(in LogEntry entry)
+    void handle(in LogEntry* entry)
     {
         if (fh.isOpen())
         {
